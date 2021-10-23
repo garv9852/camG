@@ -11,6 +11,7 @@ let capturebtn = document.querySelector(".capture-btn");
 let recordCheck = false
 let chunks;
 let transparentColor="transpparent"
+let fl=document.querySelector(".filter-layer");
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
     video.srcObject = stream;
@@ -40,6 +41,8 @@ recordbtncont.addEventListener('click', function () {
     }
     if (!recordCheck) {
         mediarecord.start();
+        transparentColor="transparent"
+        fl.style.backgroundColor=transparentColor;
         recordCheck = true;
         recordbtn.classList.add("scale-record");
         starttimer();
@@ -94,7 +97,6 @@ function stoptimer() {
 }
 
 let allfilter=document.querySelectorAll(".filter");
-let fl=document.querySelector(".filter-layer");
 allfilter.forEach(function(fil){
     fil.addEventListener("click",function(e){
         transparentColor=getComputedStyle(fil).getPropertyValue("background-color");
