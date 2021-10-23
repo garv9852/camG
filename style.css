@@ -18,8 +18,49 @@ body {
     width: 20vw;
     height: 100vh;
     background-color: BLACK;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.filter-cont{
+}
+.filter{
+    height: 70px;
+    width: 90px;
+    margin-bottom: 10px;
+    background-image: url("https://picsum.photos/id/1015/6000/4000");
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-blend-mode:color-burn ;
 }
 
+.filter-1{
+    background-color: #ffa50059
+}
+
+.filter-2{
+    background-color: #00ff9542;
+}
+
+.filter-3{
+    background-color: #ffc0cb7a;
+}
+
+.filter-4{
+    background-color: transparent;
+}
+
+.filter-layer{
+    height: 50vh;
+    width: 62vw;
+    position: absolute;
+    background-color: red;
+    top:25vh;
+    left: 20vw;
+    background-blend-mode: color-burn;
+    background-color: transparent;
+}
 .video-container {
     height: 100vh;
     width: 60vw;
@@ -39,6 +80,10 @@ video {
     font-size: larger;
     font-weight: 600;
     font-family:'Courier New', Courier, monospace;
+    background-color: red;
+    padding-right: 6px;
+    padding-left: 6px;
+    border-radius: 8px;
 }
 
 .btn-container {

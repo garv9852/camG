@@ -10,6 +10,7 @@ let capturebtncont = document.querySelector(".capture-container");
 let capturebtn = document.querySelector(".capture-btn");
 let recordCheck = false
 let chunks;
+let transparentColor="transpparent"
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
     video.srcObject = stream;
@@ -49,6 +50,24 @@ recordbtncont.addEventListener('click', function () {
         stoptimer();
     }
 })
+
+capturebtncont.addEventListener("click",function(e){
+    capturebtn.classList.add("scale-capture");
+    let canvas=document.createElement("canvas");
+    canvas.width=video.videoWidth;
+    canvas.height=video.videoHeight;
+    let tool=canvas.getContext("2d");
+    tool.drawImage(video,0,0,canvas.width,canvas.height);
+    tool.fillStyle=transparentColor
+    tool.fillRect(0,0,canvas.width,canvas.height);
+    let imageURL=canvas.toDataURL();
+    let a=document.createElement('a');
+    a.href=imageURL;
+    a.download="image.jpeg" ;
+    a.click();
+
+})
+
 let timerid;
 let timer = document.querySelector(".timer");
 let count = 0
@@ -70,4 +89,16 @@ function starttimer() {
 
 function stoptimer() {
     clearInterval(timerid);
+    document.querySelector(".timer-container").innerHTML = "";
+    count=0;
 }
+
+let allfilter=document.querySelectorAll(".filter");
+let fl=document.querySelector(".filter-layer");
+allfilter.forEach(function(fil){
+    fil.addEventListener("click",function(e){
+        transparentColor=getComputedStyle(fil).getPropertyValue("background-color");
+        fl.style.backgroundColor=transparentColor;
+    })
+})
+
