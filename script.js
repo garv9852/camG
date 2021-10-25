@@ -10,7 +10,7 @@ let capturebtncont = document.querySelector(".capture-container");
 let capturebtn = document.querySelector(".capture-btn");
 let recordCheck = false
 let chunks;
-let transparentColor="transpparent"
+let transparentColor="transparent"
 let fl=document.querySelector(".filter-layer");
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
