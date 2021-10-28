@@ -22,9 +22,10 @@ body {
     align-items: center;
     justify-content: center;
 }
-.filter-cont{
-}
-.filter{
+
+.filter-cont {}
+
+.filter {
     height: 70px;
     width: 90px;
     margin-bottom: 10px;
@@ -32,26 +33,26 @@ body {
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-blend-mode:color-burn ;
+    background-blend-mode: color-burn;
 }
 
-.filter-1{
+.filter-1 {
     background-color: #ffa50059
 }
 
-.filter-2{
+.filter-2 {
     background-color: #00ff9542;
 }
 
-.filter-3{
+.filter-3 {
     background-color: #ffc0cb7a;
 }
 
-.filter-4{
+.filter-4 {
     background-color: transparent;
 }
 
-.filter-layer{
+.filter-layer {
     height: 100vh;
     width: 62vw;
     position: absolute;
@@ -60,6 +61,7 @@ body {
     background-blend-mode: color-burn;
     background-color: transparent;
 }
+
 .video-container {
     height: 100vh;
     width: 60vw;
@@ -71,14 +73,14 @@ video {
     width: 62vw;
 }
 
-.timer-container{
+.timer-container {
     position: absolute;
     bottom: 2vh;
     color: white;
     left: 50vw;
     font-size: larger;
     font-weight: 600;
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     background-color: red;
     padding-right: 6px;
     padding-left: 6px;
@@ -131,6 +133,7 @@ video {
     0% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(1.3);
     }
@@ -143,7 +146,8 @@ video {
     background-color: white;
     border-radius: 38px;
 }
-.scale-capture{
+
+.scale-capture {
     animation-name: scale-capture;
     animation-iteration-count: 1;
     animation-duration: 1s;
@@ -153,20 +157,23 @@ video {
     0% {
         transform: scale(1);
     }
+
     100% {
         transform: scale(1.3);
     }
 }
-.gallery-container:hover{
+
+.gallery-container:hover {
     cursor: pointer;
 }
 
-.material-icons{
+.material-icons {
     color: white;
-    font-size:2.5rem;
+    font-size: 2.5rem;
 }
-.gallery-container{
-    margin-top:95px;
+
+.gallery-container {
+    margin-top: 95px;
 }
 
 .capture-container {

@@ -10,8 +10,8 @@ let capturebtncont = document.querySelector(".capture-container");
 let capturebtn = document.querySelector(".capture-btn");
 let recordCheck = false
 let chunks;
-let transparentColor="transparent"
-let fl=document.querySelector(".filter-layer");
+let transparentColor = "transparent"
+let fl = document.querySelector(".filter-layer");
 
 navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
     video.srcObject = stream;
@@ -27,21 +27,21 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         let blob = new Blob(chunks, {
             type: `video/mp4`
         });
-        if(db){
-            let vid=shortid();
-            let dbTransaction=db.transaction("video","readwrite");
-            let videoStore=dbTransaction.objectStore("video");
-            let videoEntry={
-                id:`vid-${vid}`,
-                blobdata:blob
+        if (db) {
+            let vid = shortid();
+            let dbTransaction = db.transaction("video", "readwrite");
+            let videoStore = dbTransaction.objectStore("video");
+            let videoEntry = {
+                id: `vid-${vid}`,
+                blobdata: blob
             }
             videoStore.add(videoEntry);
         }
-        /*let videoUrl = URL.createObjectURL(blob);
+        let videoUrl = URL.createObjectURL(blob);
         let a = document.createElement('a');
         a.href = videoUrl;
         a.download = `${nam}.mp4`;
-        a.click();*/
+        a.click();
     })
 })
 recordbtncont.addEventListener('click', function () {
@@ -51,8 +51,8 @@ recordbtncont.addEventListener('click', function () {
     }
     if (!recordCheck) {
         mediarecord.start();
-        transparentColor="transparent"
-        fl.style.backgroundColor=transparentColor;
+        transparentColor = "transparent"
+        fl.style.backgroundColor = transparentColor;
         recordCheck = true;
         recordbtn.classList.add("scale-record");
         starttimer();
@@ -64,50 +64,52 @@ recordbtncont.addEventListener('click', function () {
     }
 })
 
-capturebtncont.addEventListener("click",function(e){
+capturebtncont.addEventListener("click", function (e) {
     capturebtn.classList.add("scale-capture");
-    let canvas=document.createElement("canvas");
-    canvas.width=video.videoWidth;
-    canvas.height=video.videoHeight;
-    let tool=canvas.getContext("2d");
-    tool.drawImage(video,0,0,canvas.width,canvas.height);
-    tool.fillStyle=transparentColor
-    tool.fillRect(0,0,canvas.width,canvas.height);
-    let imageURL=canvas.toDataURL();
+    let canvas = document.createElement("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    let tool = canvas.getContext("2d");
+    tool.drawImage(video, 0, 0, canvas.width, canvas.height);
+    tool.fillStyle = transparentColor
+    tool.fillRect(0, 0, canvas.width, canvas.height);
+    let imageURL = canvas.toDataURL();
 
-    if(db){
-        let iid=shortid();
-        let dbTransaction=db.transaction("image","readwrite");
-        let imageStore=dbTransaction.objectStore("image");
-        let imageEntry={
-            id:`img-${iid}`,
-            url:imageURL
+    if (db) {
+        let iid = shortid();
+        let dbTransaction = db.transaction("image", "readwrite");
+        let imageStore = dbTransaction.objectStore("image");
+        let imageEntry = {
+            id: `img-${iid}`,
+            url: imageURL
         }
         imageStore.add(imageEntry);
     }
 
-    /*let a=document.createElement('a');
+    let a=document.createElement('a');
     a.href=imageURL;
     a.download="image.jpeg" ;
-    a.click();*/
+    a.click();
 
 })
 
 let timerid;
 let timer = document.querySelector(".timer");
 let count = 0
+
 function starttimer() {
     document.querySelector(".timer-container").innerHTML = `<div class="timer">00:00:00</div>`;
+
     function displaytimer() {
         count++;
-        let totalseconds=count;
-        let hour=Number.parseInt(totalseconds/3600/10)==0?'0'+Number.parseInt(totalseconds/3600):Number.parseInt(totalseconds/3600);
-        totalseconds=totalseconds%3600;
-        let min=Number.parseInt(totalseconds/60/10)==0?'0'+Number.parseInt(totalseconds/60):Number.parseInt(totalseconds/60);
-        let sec=Number.parseInt(totalseconds%60/10)==0?"0"+totalseconds%60:totalseconds%60;
+        let totalseconds = count;
+        let hour = Number.parseInt(totalseconds / 3600 / 10) == 0 ? '0' + Number.parseInt(totalseconds / 3600) : Number.parseInt(totalseconds / 3600);
+        totalseconds = totalseconds % 3600;
+        let min = Number.parseInt(totalseconds / 60 / 10) == 0 ? '0' + Number.parseInt(totalseconds / 60) : Number.parseInt(totalseconds / 60);
+        let sec = Number.parseInt(totalseconds % 60 / 10) == 0 ? "0" + totalseconds % 60 : totalseconds % 60;
         console.log(sec);
         document.querySelector(".timer").innerHTML = `<div class="timer">${hour}:${min}:${sec}</div>`;
-        console.log(hour+" "+min+" "+sec+" "+timer);
+        console.log(hour + " " + min + " " + sec + " " + timer);
     }
     timerid = setInterval(displaytimer, 1000);
 }
@@ -115,14 +117,13 @@ function starttimer() {
 function stoptimer() {
     clearInterval(timerid);
     document.querySelector(".timer-container").innerHTML = "";
-    count=0;
+    count = 0;
 }
 
-let allfilter=document.querySelectorAll(".filter");
-allfilter.forEach(function(fil){
-    fil.addEventListener("click",function(e){
-        transparentColor=getComputedStyle(fil).getPropertyValue("background-color");
-        fl.style.backgroundColor=transparentColor;
+let allfilter = document.querySelectorAll(".filter");
+allfilter.forEach(function (fil) {
+    fil.addEventListener("click", function (e) {
+        transparentColor = getComputedStyle(fil).getPropertyValue("background-color");
+        fl.style.backgroundColor = transparentColor;
     })
 })
-
