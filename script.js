@@ -27,11 +27,21 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         let blob = new Blob(chunks, {
             type: `video/mp4`
         });
-        let videoUrl = URL.createObjectURL(blob);
+        if(db){
+            let vid=shortid();
+            let dbTransaction=db.transaction("video","readwrite");
+            let videoStore=dbTransaction.objectStore("video");
+            let videoEntry={
+                id:`vid-${vid}`,
+                blobdata:blob
+            }
+            videoStore.add(videoEntry);
+        }
+        /*let videoUrl = URL.createObjectURL(blob);
         let a = document.createElement('a');
         a.href = videoUrl;
         a.download = `${nam}.mp4`;
-        a.click();
+        a.click();*/
     })
 })
 recordbtncont.addEventListener('click', function () {
@@ -64,10 +74,22 @@ capturebtncont.addEventListener("click",function(e){
     tool.fillStyle=transparentColor
     tool.fillRect(0,0,canvas.width,canvas.height);
     let imageURL=canvas.toDataURL();
-    let a=document.createElement('a');
+
+    if(db){
+        let iid=shortid();
+        let dbTransaction=db.transaction("image","readwrite");
+        let imageStore=dbTransaction.objectStore("image");
+        let imageEntry={
+            id:`img-${iid}`,
+            url:imageURL
+        }
+        imageStore.add(imageEntry);
+    }
+
+    /*let a=document.createElement('a');
     a.href=imageURL;
     a.download="image.jpeg" ;
-    a.click();
+    a.click();*/
 
 })
 
