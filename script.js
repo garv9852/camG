@@ -37,11 +37,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
             }
             videoStore.add(videoEntry);
         }
-        let videoUrl = URL.createObjectURL(blob);
-        let a = document.createElement('a');
-        a.href = videoUrl;
-        a.download = `${nam}.mp4`;
-        a.click();
+        // let videoUrl = URL.createObjectURL(blob);
+        // let a = document.createElement('a');
+        // a.href = videoUrl;
+        // a.download = `${nam}.mp4`;
+        // a.click();
     })
 })
 recordbtncont.addEventListener('click', function () {
@@ -86,10 +86,10 @@ capturebtncont.addEventListener("click", function (e) {
         imageStore.add(imageEntry);
     }
 
-    let a=document.createElement('a');
+    /*let a=document.createElement('a');
     a.href=imageURL;
     a.download="image.jpeg" ;
-    a.click();
+    a.click();*/
 
 })
 
