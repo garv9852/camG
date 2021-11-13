@@ -82,7 +82,7 @@ video {
 }
 @media screen and (max-width:500px) {
     video{
-        height: 80%;
+        height: 70%;
         width: 100%;
     }
     .video-container{
