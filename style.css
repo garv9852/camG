@@ -23,11 +23,18 @@ body {
     justify-content: center;
 }
 
-.filter-cont {}
+.filter-cont {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 .filter {
-    height: 70px;
-    width: 90px;
+    height: 10%;
+    width: 40%;
     margin-bottom: 10px;
     background-image: url("https://picsum.photos/id/1015/6000/4000");
     background-position: center;
@@ -82,6 +89,10 @@ video {
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .filter{
+        height: 8%;
+        width: 73%;
     }
 }
 
